@@ -1,0 +1,231 @@
+﻿/* reset /
+html, body, ul, li { margin: 0; padding: 0;}
+
+/* reset wysokość linii i fontu */
+h1, h2, ul, li, p { margin: 0; padding: 0; font-size: 1em; line-height: 1.5em;}
+
+h1,h2, h3, h4, h5 {
+	margin: 0;
+}
+
+body {
+	margin: 0;
+	background:#c9d0e4;
+	font-family: "Times New Roman", Tahoma, Geneva, sans-serif;
+	font-size: 11px;
+	color: black;
+}
+
+#all_elements{
+	background-color: white;
+	margin: 0 auto;
+	width: 1170px;
+}
+
+#top {
+	background-color: #cfe156;
+	width: 1170px;
+	height: 175px;
+	margin: 0px 0px 5px 0px;
+	position: relative;
+}
+
+h1.logo  {
+	padding: 15px 0 2px 15px;
+	float: left;
+}
+.panel{
+	float: left;
+	padding: 15px 0 2px 15px;
+	font-size: 1.5em;
+}
+
+h1.logo a {
+	color:yellow;
+	font-size: 40px;
+	text-decoration:none;
+	text-shadow: 1px 1px black;
+}
+
+h2.logo {
+	clear:both;
+	padding: 0 0 10px 20px;
+	text-decoration:italic;
+}
+
+#top p {
+	padding: 0 0 5px 50px;
+	margin: 0 500px 0 0;
+	font-size: 1.5em;
+}
+
+
+#top ul { 
+	overflow: hidden; 
+	position: absolute; 
+	bottom: 50px; 
+	left: 700px; 
+	list-style: none;
+	/*border: 5px solid #d0d997;*/
+}
+
+#top ul li {
+	float:left;
+	margin-left:5px;
+	width: 120px;
+	height: 80px;	
+	/*background: url(../media/znaczki2.png) no-repeat;*/
+	border: 1px solid #073c5e;
+	background-color: #d0d997;
+	}
+
+	
+#top ul li a {
+	display:block;
+	text-align:center;
+	padding: 25px 0 25px 0px;
+	color: #000;
+	text-decoration: none;
+	font-size:1.8em;
+	text-shadow: 1px 1px black;
+
+}
+
+#top ul li:hover{
+	/*background: url(../media/znaczki3.png) no-repeat;*/
+	background-color:  #cfe156;
+	border: 2px solid gray;
+}
+
+
+#center{
+	background-color: #f8ffcc;
+	width: 1170px;
+	/*height: 700px;*/
+	margin: 5px 0px 5px 0px;
+	border: 1px solid  gray;
+}
+
+#center ul { 
+	padding-top: 10px;
+	list-style: none;
+	margin-left:5px;
+}
+
+#center ul li {
+	
+	width: 120px;
+	background-color: #d3e178;
+	border: 1px solid black;
+	
+}
+#center ul li:hover{
+	
+	width: 120px;
+	background-color: #f6bc60;
+	border: 1px solid black;
+}
+
+#center ul li a {
+	padding: 5px;
+	display: block;
+	text-align:center;
+	color: #000;
+	text-decoration:none;
+	font-size:1.2em;
+	font-weight: bold;
+}
+
+#center h2 {
+	font-size: 20px;
+	padding: 5px 0 0 5px;
+	text-decoration: underline;
+	text-align: center;
+}
+
+#center{
+overflow: hidden;
+}
+
+#left_center {
+	float: left;
+	padding-right: 10px;
+}
+
+#right_center {
+	float: left;
+	width: 930px;
+	/*height: 690px;*/
+	background-color: #f8ffcc;
+	
+}
+
+.error {
+	color:red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+}
+	
+.kwadrat {
+	margin: 4px;
+	width: 220px;
+	height: 220px;
+	background-color: white;
+	text-align: center;
+	border: 1px solid #9eb505
+}
+
+
+.kwadrat p {
+padding-top: 10px;
+font-size: 2em;
+}
+
+
+.zdjecie_produktu {
+  padding: 5px 0 10px 0;
+}
+
+.kolumna {
+    float: left;
+	margin: 0 0 0 0;
+}
+
+#form {
+	padding-top: 10px;
+	font-size: 2em;
+}
+
+input , select{
+	margin: 5px;
+	width: 150px;
+	height: 30px;
+}
+
+#footer {
+	clear: both;
+	background: #343434;
+	color: #fff;
+	float: left;
+	width: 100%;
+}
+
+#copyright, #footer-menu {
+		width: 300px;
+		padding: 10px;
+		}
+		
+#copyright {
+	float: left;
+}
+
+#footer-menu {
+	float:right;
+	text-align: right;
+}
+
+#footer-menu a {
+	color: #fff;
+	padding: 0 5px;
+}
