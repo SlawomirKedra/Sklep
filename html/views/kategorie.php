@@ -1,5 +1,6 @@
+
 <?php
-require_once "/../controller/connect.php";
+require_once "../controller/connect.php";
 $pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.';charset=utf8', $db_user, $db_password);
 $pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo -> exec("SET NAMES 'utf8'");
@@ -28,19 +29,16 @@ $pdo -> exec("SET NAMES 'utf8'");
     <link href="/../PhpProject1/html/content/css/shop-homepage.css" rel="stylesheet">
 
 <?php
-
 require_once "/../controller/function.php";
 require_once "/../controller/sessions.php";
 require_once "/../controller/request.php";
 require_once "/../controller/user.php";
 require_once "/../controller/koszyk.php";
-require_once "/../controller/login.php";
+
 
 $request = new userRequest;
 $session = new session;
 $koszyk = new koszyk;
-
-
 ?>
     
     
@@ -77,6 +75,42 @@ $koszyk = new koszyk;
         </div>
     </nav>
 
+    <!-- Panel boczny -->
+    <div class="container">
+
+        <div class="row">
+       
+          <div class='col-md-3'>
+         
+             <p class="lead">Menu:</p>
+             <?php
+             showMenu();
+             
+             ?>
+          </div>
+            <div class="col-md-9">
+                <div class="row">
+                <?php
+               echo "<div id='produkty'>";
+               if (isset($_GET['cat_id'])){
+               $kategorie_id = $_GET['cat_id'];  
+             }
+             else {
+               $kategorie_id = null;  
+             }
+             showCategory($kategorie_id);
+             echo "</div>";
+             ?>
+                    
+                </div>
+            </div>
+            
+
+            </div>
+
+        </div>
+
+    
     <!-- /.container -->
 
     <div class="container">
@@ -96,10 +130,10 @@ $koszyk = new koszyk;
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="html/content/js/jquery.js"></script>
+    <script src="/../PhpProject1/html/content/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="html/content/js/bootstrap.min.js"></script>
+    <script src="/../PhpProject1/html/content/js/bootstrap.min.js"></script>
 
 </body>
 

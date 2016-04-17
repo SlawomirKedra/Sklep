@@ -1,5 +1,10 @@
 <?php
 
+require_once "/../controller/connect.php";
+$pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.';charset=utf8', $db_user, $db_password);
+$pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo -> exec("SET NAMES 'utf8'");
+
 	session_start();			
 	// sprawdzamy tylko jedną zmienna z rejestracji 
 	if (isset($_POST['Email']))
@@ -143,7 +148,7 @@
 				}
 				if ($wszystko_OK==true)
 				{
-					//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
+					//wszystkie testy zaliczone, dodajemy gracza do bazy
 					
 					if ($polaczenie->query("INSERT INTO klienci VALUES (NULL, '$Imie', '$Nazwisko', '$Email', '$Nr_tel', '$Adres', '$login', '$haslo')"))
 					{
@@ -197,7 +202,20 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<?php
 
+require_once "/../controller/function.php";
+require_once "/../controller/sessions.php";
+require_once "/../controller/request.php";
+require_once "/../controller/user.php";
+require_once "/../controller/koszyk.php";
+
+$request = new userRequest;
+$session = new session;
+$koszyk = new koszyk;
+
+
+?>
 </head>
 
 <body>
@@ -223,7 +241,7 @@
                         <a href="rejestracja.php">Rejestracja</a>
                     </li>
                     <li>
-                        <a href="logowanie.php">Logowanie</a>
+                        <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
                     </li>
                 </ul>
             </div>
@@ -237,11 +255,10 @@
 
             <div class="col-md-3">
                 <p class="lead">Menu:</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Rolety</a>
-                    <a href="#" class="list-group-item">Żaluzje</a>
-                    <a href="#" class="list-group-item">Moskitiery</a>
-                </div>
+                <?php
+             showMenu();
+             
+             ?>
            </div>
 	
 	<form method="post">

@@ -1,17 +1,14 @@
 <?php
-
-	session_start();	
-	//jeśli ktoś nie jest zalogowany nie przechodzi do strony tylko wraca do logowania
-	
-	if (!isset($_SESSION['zalogowany']))
-	{
-		header('Location: logowanie.php');
-		exit();
-	}
-	
+require_once "/../controller/connect.php";
+$pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.';charset=utf8', $db_user, $db_password);
+$pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo -> exec("SET NAMES 'utf8'");
 ?>
-<!DOCTYPE html>
 
+
+
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -29,16 +26,28 @@
 
     <!-- Custom CSS -->
     <link href="/../PhpProject1/html/content/css/shop-homepage.css" rel="stylesheet">
+
+<?php
+
+require_once "/../controller/function.php";
+require_once "/../controller/sessions.php";
+require_once "/../controller/request.php";
+require_once "/../controller/user.php";
+require_once "/../controller/koszyk.php";
+require_once "/../controller/login.php";
+
+$request = new userRequest;
+$session = new session;
+$koszyk = new koszyk;
+
+
+                  
+?>
     
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    
+    
+    
 </head>
-
 <body>
 
     <!-- Navigation -->
@@ -62,42 +71,50 @@
                         <a href="rejestracja.php">Rejestracja</a>
                     </li>
                     <li>
-                        <a href="logowanie.php">Logowanie</a>
+                        <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
                     </li>
+                   
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Panel boczny -->
-    <div class="container">
+<div class="container">
 
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Menu:</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Rolety</a>
-                    <a href="#" class="list-group-item">Żaluzje</a>
-                    <a href="#" class="list-group-item">Moskitiery</a>
-                </div>
-           </div>
-	
-        
-	
+       
+          
+            <div class='col-md-3'>
+                
 <?php
+ if($session-> getUser() -> isAnonymous()){
+      $result = user::checkPasswords($_POST['login'], $_POST['password']);
+    
+        if($result instanceof user){
+        //zalogowany
+        $session->updateSession($result);
+        echo "<div class='col-md-9'>";
+        echo 'Zalogowany: '.$session->getUser()->getLogin();
+        echo "</div>";        
+        }
+        else{
+            header('Location: logowanie.php');
+            }
+     }
 
-	echo "<p>Witaj ".$_SESSION['Imie'].'! [ <a href="../controller/logout.php">Wyloguj się!</a> ]</p>';
-	echo "<p><b>id_Klienta</b>: ".$_SESSION['id_Klienci'];
-	echo " | <b>Imie</b>: ".$_SESSION['Imie'];
-	echo " | <b>Nazwisko</b>: ".$_SESSION['Nazwisko']."</p>";
-	echo "<p><b>E-mail</b>: ".$_SESSION['Email'];
-	echo "<br /><b>Nr_tel</b>: ".$_SESSION['Nr_tel']."</p>";
-	
+                        
 ?>
-  </div>
-   </div>
- <!-- /.container -->
+               
+            </div>
+            <div class='col-md-3'>
+            
+
+            </div>   
+            
+        </div>
+            
+
+</div>
+    <!-- /.container -->
 
     <div class="container">
 
@@ -116,10 +133,10 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="/../PhpProject1/html/content/js/jquery.js"></script>
+    <script src="html/content/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/../PhpProject1/html/content/js/bootstrap.min.js"></script>
+    <script src="html/content/js/bootstrap.min.js"></script>
 
 </body>
 

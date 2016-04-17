@@ -34,7 +34,6 @@ require_once "/../controller/sessions.php";
 require_once "/../controller/request.php";
 require_once "/../controller/user.php";
 require_once "/../controller/koszyk.php";
-require_once "/../controller/login.php";
 
 $request = new userRequest;
 $session = new session;
@@ -70,13 +69,69 @@ $koszyk = new koszyk;
                         <a href="rejestracja.php">Rejestracja</a>
                     </li>
                     <li>
-                        <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
+                       <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Panel boczny -->
+    <div class="container">
+
+        <div class="row">
+       
+          <div class='col-md-3'>
+         
+             <p class="lead">Menu:</p>
+             <?php
+             showMenu();
+             
+             ?>
+          
+          </div>
+            
+            
+        
+        <div class="col-md-9">
+        <h2> Zawartość Koszyka </h2>      
+       <div class="table-responsive">
+        <table class="table table-bordered table-hover">   
+       <?php
+       
+       $inkoszyk = $koszyk->getProducts();
+      
+       echo "<tr><td>Indeks</td><td>Nazwa produktu</td><td>Cena netto</td><td>Ilość</td><td>Wartość netto</td></tr>";
+       
+       
+       $sum = 0;
+       foreach ($inkoszyk as $produkty){
+           $produktykoszykid = $produkty['id'];
+           $Cena = $produkty['Cena'];
+           $quantity = $produkty['quantity'];
+           $index = $produkty['index'];
+           $Nazwa = $produkty['Nazwa'];
+           $total = $quantity * $Cena;
+           $id_Produkty = $produkty['pid'];
+           $sum+= $total;
+           $remLink = "<a href='usunzkoszyka.php?id=$produktykoszykid'>usuń</a>";
+           $plus = "<a href='dodajdokoszyka.php?id_Produkty=$id_Produkty'>+</a>";
+           $minus = "<a href='usunzkoszyka.php?id_Produkty=$id_Produkty'>-</a>";
+           echo "<tr><td>$index</td><td>$Nazwa</td><td>$Cena zł </td><td>$quantity $plus $minus</td><td>$total</td></tr>";
+       }
+       
+        
+       ?>
+        </table>
+           <h3>Wartość koszyka <?php echo $sum?> zł netto</h3>
+        </div> 
+              
+        </div>
+       
+      </div>
+ </div>       
+
+    
     <!-- /.container -->
 
     <div class="container">

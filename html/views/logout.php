@@ -4,8 +4,11 @@ $pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.';charset=utf8', $db_user
 $pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo -> exec("SET NAMES 'utf8'");
 ?>
-<!DOCTYPE html>
 
+
+
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -23,13 +26,7 @@ $pdo -> exec("SET NAMES 'utf8'");
 
     <!-- Custom CSS -->
     <link href="/../PhpProject1/html/content/css/shop-homepage.css" rel="stylesheet">
-    
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
 <?php
 
 require_once "/../controller/function.php";
@@ -38,14 +35,19 @@ require_once "/../controller/request.php";
 require_once "/../controller/user.php";
 require_once "/../controller/koszyk.php";
 
+
 $request = new userRequest;
 $session = new session;
 $koszyk = new koszyk;
 
-
+$session -> updateSession(new user(true));
+header("Location: /../PhpProject1/index.php"); 
 ?>
+  
+    
+    
+    
 </head>
-
 <body>
 
     <!-- Navigation -->
@@ -76,24 +78,7 @@ $koszyk = new koszyk;
         </div>
     </nav>
 
-    <!-- Panel boczny -->
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Menu:</p>
-                <?php
-             showMenu();
-             
-             ?>
-           </div>
-	
-        
-            <h3><strong><p class="text-info">Dziękujemy za rejestracje! - można zalogować się na konto </p></strong></h3>
-  </div>
-   </div>
- <!-- /.container -->
+    <!-- /.container -->
 
     <div class="container">
 
@@ -112,10 +97,10 @@ $koszyk = new koszyk;
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="/../PhpProject1/html/content/js/jquery.js"></script>
+    <script src="html/content/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/../PhpProject1/html/content/js/bootstrap.min.js"></script>
+    <script src="html/content/js/bootstrap.min.js"></script>
 
 </body>
 

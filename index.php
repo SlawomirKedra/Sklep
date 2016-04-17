@@ -1,3 +1,14 @@
+
+<?php
+require_once "html/controller/connect.php";
+$pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.';charset=utf8', $db_user, $db_password);
+$pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo -> exec("SET NAMES 'utf8'");
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -17,15 +28,25 @@
     <!-- Custom CSS -->
     <link href="html/content/css/shop-homepage.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<?php
+require_once "html/controller/function.php";
+require_once "html/controller/sessions.php";
+require_once "html/controller/request.php";
+require_once "html/controller/user.php";
+require_once "html/controller/koszyk.php";
 
+
+
+
+$request = new userRequest;
+$session = new session;
+$koszyk = new koszyk;
+?>
+    
+    
+    
+    
 </head>
-
 <body>
 
     <!-- Navigation -->
@@ -49,7 +70,8 @@
                         <a href="html/views/rejestracja.php">Rejestracja</a>
                     </li>
                     <li>
-                        <a href="html/views/logowanie.php">Logowanie</a>
+                        <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
+                       <!-- <a href="html/views/logowanie.php">Logowanie</a>-->
                     </li>
                 </ul>
             </div>
@@ -60,18 +82,25 @@
     <div class="container">
 
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Menu:</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Rolety wewnętrzne</a>
-                    <a href="#" class="list-group-item">Rolety zewnętrzne</a>                    
-                    <a href="#" class="list-group-item">Żaluzje</a>
-                    <a href="#" class="list-group-item">Moskitiery</a>
-                    <a href="#" class="list-group-item">Markizy</a>
-                </div>
-            </div>
-
+       
+          <div class='col-md-3'>
+         
+             <p class="lead">Menu:</p>    
+             <?php
+             showMenu();
+             
+             
+             ?>
+            <!-- <div class="list-group">
+                  <a href="html/views/kategorie.php?cat_id=$id" class="list-group-item">Rolety wewnętrzne</a>
+                  <a href="html/views/kategorie.php?cat_id=$id" class="list-group-item">Rolety zewnętrzne</a>                    
+                  <a href="html/views/kategorie.php?cat_id=$id" class="list-group-item">Żaluzje</a>
+                  <a href="html/views/kategorie.php?cat_id=$id" class="list-group-item">Moskitiery</a>
+                  <a href="html/views/kategorie.php?cat_id=$id" class="list-group-item">Markizy</a>
+             </div>-->
+                
+          </div>
+        
             <div class="col-md-9">
 
                 <div class="row carousel-holder">
@@ -112,7 +141,7 @@
                             <img src="html/image/roletydziennoc1.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">Od 36.00 zł</h4>
-                                <h4><a href="#">Rolety wewn.</a>
+                                <h4><b>Rolety wewn.</b>
                                 </h4>
                                 <p>Rolety dzień-noc , mini, standard, z kasetką, sinus, zaciągane od dołu, do okien dachowych, rzymskie</p>
                             </div>
@@ -133,7 +162,7 @@
                             <img src="html/image/roletyzewnetrzne.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">Od 1023.00 zł</h4>
-                                <h4><a href="#">Rolety zewn.</a>
+                                <h4><b>Rolety zewn.</b>
                                 </h4>
                                 <p>Rolety zewnętrzne elewacyjne, naokienne, podtynkowe, bramy rolowane, żaluzje fasadowe</p>
                             </div>
@@ -155,7 +184,7 @@
                             <img src="html/image/zaluzje1.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">Od 32.00 zł</h4>
-                                <h4><a href="#">Żaluzje</a>
+                                <h4><b>Żaluzje</b>
                                 </h4>
                                 <p>Żaluzje poziome aluminiowe, poziome drewniane, poziome isotra, pionowe verticale, plisy </p>
                             </div>
@@ -177,7 +206,7 @@
                             <img src="html/image/moskitiera.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">Od 50.00 zł</h4>
-                                <h4><a href="#">Moskitiery</a>
+                                <h4><b>Moskitiery</b>
                                 </h4>
                                 <p>Moskitiery rolowane, drzwi siatkowe, ekrany okienne</p>
                             </div>
@@ -199,7 +228,7 @@
                             <img src="html/image/markiza2.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">Od 250.00 zł</h4>
-                                <h4><a href="#">Markizy</a>
+                                <h4><b>Markizy</a>
                                 </h4>
                                 <p>Markizy tarasowe, balkonowe, veranda, refleksole</p>
                             </div>

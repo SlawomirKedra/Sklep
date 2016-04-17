@@ -34,12 +34,13 @@ require_once "/../controller/sessions.php";
 require_once "/../controller/request.php";
 require_once "/../controller/user.php";
 require_once "/../controller/koszyk.php";
-require_once "/../controller/login.php";
 
 $request = new userRequest;
 $session = new session;
 $koszyk = new koszyk;
 
+$koszyk->remove($_GET['id_Produkty']);
+header('Location: /../PhpProject1/html/views/pokaz_koszyk.php');
 
 ?>
     
@@ -70,13 +71,35 @@ $koszyk = new koszyk;
                         <a href="rejestracja.php">Rejestracja</a>
                     </li>
                     <li>
-                        <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
+                       <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Panel boczny -->
+    <div class="container">
+
+        <div class="row">
+       
+          <div class='col-md-3'>
+         
+             <p class="lead">Menu:</p>
+             <?php
+             showMenu();
+             
+             ?>
+          
+                </div>
+            </div>
+            
+
+            </div>
+
+        
+
+    
     <!-- /.container -->
 
     <div class="container">
