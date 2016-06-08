@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-require_once "/../controller/connect.php";
+require_once "connect.php";
 $pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.';charset=utf8', $db_user, $db_password);
 $pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo -> exec("SET NAMES 'utf8'");
@@ -113,7 +113,7 @@ $pdo -> exec("SET NAMES 'utf8'");
 		$_SESSION['fr_haslo2'] = $haslo2;
 		if (isset($_POST['regulamin'])) $_SESSION['fr_regulamin'] = true;
 		
-		require_once "../controller/connect.php";
+		require_once "connect.php";
 		mysqli_report(MYSQLI_REPORT_STRICT);		//raportowanie o wyjątki 
 		
 		try 
@@ -153,7 +153,7 @@ $pdo -> exec("SET NAMES 'utf8'");
 					if ($polaczenie->query("INSERT INTO klienci VALUES (NULL, '$Imie', '$Nazwisko', '$Email', '$Nr_tel', '$Adres', '$login', '$haslo')"))
 					{
 						$_SESSION['udanarejestracja']=true;
-						header('Location: ../controller/udana_rej.php');
+						header('Location: udana_rej.php');
 					}
 					else
 					{
@@ -191,10 +191,10 @@ $pdo -> exec("SET NAMES 'utf8'");
     <title>Sklep internetowy - Roleton</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/../PhpProject1/html/content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="html/content/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/../PhpProject1/html/content/css/shop-homepage.css" rel="stylesheet">
+    <link href="html/content/css/shop-homepage.css" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -204,11 +204,11 @@ $pdo -> exec("SET NAMES 'utf8'");
     <![endif]-->
 <?php
 
-require_once "/../controller/function.php";
-require_once "/../controller/sessions.php";
-require_once "/../controller/request.php";
-require_once "/../controller/user.php";
-require_once "/../controller/koszyk.php";
+require_once "function.php";
+require_once "sessions.php";
+require_once "request.php";
+require_once "user.php";
+require_once "koszyk.php";
 
 $request = new userRequest;
 $session = new session;
@@ -230,18 +230,18 @@ $koszyk = new koszyk;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/../PhpProject1/index.php">Roleton</a>
+                <a class="navbar-brand" href="index.php">Roleton</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/../PhpProject1/index.php">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="rejestracja.php">Rejestracja</a>
                     </li>
                     <li>
-                        <?php echo "<a href='/../PhpProject1/html/views/logowanie.php'>Logowanie</a>";?>
+                        <?php echo "<a href='logowanie.php'>Logowanie</a>";?>
                     </li>
                 </ul>
             </div>
@@ -382,7 +382,7 @@ $koszyk = new koszyk;
 				echo "checked";
 				unset($_SESSION['fr_regulamin']);
 			}
-				?>/> Akceptuję regulamin			
+				?>/><a href="regulamin.php"> Akceptuję regulamin </a>			
 	</label>
 	<?php
 			if (isset($_SESSION['e_regulamin']))
@@ -417,10 +417,10 @@ $koszyk = new koszyk;
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="/../PhpProject1/html/content/js/jquery.js"></script>
+    <script src="html/content/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/../PhpProject1/html/content/js/bootstrap.min.js"></script>
+    <script src="html/content/js/bootstrap.min.js"></script>
 
 </body>
 
